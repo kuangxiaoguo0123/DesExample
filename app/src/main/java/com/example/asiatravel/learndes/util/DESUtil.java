@@ -21,8 +21,11 @@ public class DESUtil {
      */
     public static byte[] initKey() {
         try {
+            //KeyGenerator 密钥生成器
             KeyGenerator keyGenerator = KeyGenerator.getInstance("DES");
+            //初始化密钥生成器
             keyGenerator.init(56);
+            //生成密钥
             SecretKey secretKey = keyGenerator.generateKey();
             return secretKey.getEncoded();
         } catch (Exception e) {
@@ -39,10 +42,14 @@ public class DESUtil {
      * @return 加密后获取的字节数组
      */
     public static byte[] encrypt(byte[] data, byte[] key) {
+        //恢复密钥
         SecretKey secretKey = new SecretKeySpec(key, "DES");
         try {
+            //Cipher完成加密或解密工作
             Cipher cipher = Cipher.getInstance("DES");
+            //根据密钥对Cipher进行初始化 ENCRYPT_MODE, DECRYPT_MODE
             cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+            //加密
             return cipher.doFinal(data);
         } catch (Exception e) {
             Log.e(TAG, "encrypt: " + e.getMessage());

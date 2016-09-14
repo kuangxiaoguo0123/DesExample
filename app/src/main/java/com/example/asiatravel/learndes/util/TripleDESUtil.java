@@ -8,7 +8,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 /**
  * Created by kuangxiaoguo on 16/9/13.
- *
+ * 
  * 3DES加密工具类
  */
 public class TripleDESUtil {
@@ -21,7 +21,7 @@ public class TripleDESUtil {
      */
     public static byte[] initKey() throws Exception {
         KeyGenerator keyGenerator = KeyGenerator.getInstance("DESede");
-        keyGenerator.init(168);//112 168
+        keyGenerator.init(168);//密钥长度 112 168
         SecretKey secretKey = keyGenerator.generateKey();
         return secretKey.getEncoded();
     }
